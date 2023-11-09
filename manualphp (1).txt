@@ -1,0 +1,1510 @@
+<?php 
+/*                                           INDICE
+1. INTRODUCIÓN - (LÍNEA 95)
+   1.1 COMENTARIOS
+   1.2 VARIABLES
+   1.3 CONSTANTES
+   1.4 ARREGLOS
+   1.5 ARREGLOS ASOCIATIVOS
+   1.6 ARREGLOS MULTIDIMENSIONALES
+      1.6.1 ARREGLOS MULTIDIMENSIONALES EJEMPLO EXTRA
+   1.7 FUNCIONES PARA ARREGLOS
+   1.8 OPERADORES
+
+2. CONDICIONAL - (LÍNEA 299)
+   2.1 CONDICIONAL IF - ELSE
+   2.1 CONDICIONAL SWITCH
+   2.2 CONDICIONAL TERNARIO
+
+3. CICLO - (LÍNEA 361)
+   3.1 CICLO FOR
+   3.2 CICLO WHILE
+   3.3 CICLO DO WHILE
+   3.4 CICLO FOR EACH
+
+4. EXTRA - (LÍNEA 436)
+   4.1 SENTENCIA BREAK
+   4.2 FUNCIÓN VAR_DUMP
+   4.3 FUNCIÓN PRINT_R
+   4.4 OPERADOR DE NACE ESPACIAL
+
+5. FUNCIONES - (LÍNEA 517)
+   5.1 FUNCIONES
+   5.2 FUNCIONES CON PARÁMETRO
+   5.3 FUNCIONES CON PARÁMETRO Y RETURN
+   5.4 FUNCIONES ESPECIALES PARA CADENA DE TEXTO
+   5.5 FUNCIONES ESPECIALES PARA ARREGLO
+   5.6 FUNCIONES MATEMÁTICAS
+   5.7 INCLUDE & REQUIRED
+   5.8 FUNCIÓN DIE
+   5.8 DECLARACIONES ESCALARES
+   5.9 DECLARACIONES DE TIPO DEVOLUCIÓN
+
+6. PROGRAMACIÓN ORIENTADA A OBJETOS - (LÍNEA 745)
+   6.1 CREACIÓN DE CLASES
+   6.2 CREACIÓN DE CLASES ABSTRACTA
+   6.3 HERENCIA
+
+7. FORMULARIOS - (LÍNEA 869)
+   7.1 REENVIO ACTION AL MISMO PHP
+   7.2 FORMULARIO GET
+   7.3 FORMULARIO POST
+   7.4 FORMULARIO VALIDACIÓN
+   7.5 DOBLE FORMULARIO ELECCION
+
+8. SESIONES - (LÍNEA 1009)
+   8.1 APERTURA, CIERRE Y REINICIAR ARRAY
+   8.2 DECLARAR VARIABLE
+
+9. SISTEMA - (LÍNEA 1040)
+   9.1 $_FILES
+   9.2 $_SERVER
+
+10. CONEXION BASE DE DATOS - (LÍNEA 1147)
+   10.1 MÉTODO QUERY
+   10.2 MÉTODO STATEMENT
+   10.3 MÉTODO MYSQLI
+
+11. ARCHIVOS - (LINEA 1217)
+   11.1 VER SI EXISTE UN ARCHIVO
+   11.2 LECTURA ARCHIVO 
+   11.3 CREAR ARCHIVO CON SOBREESCRITURA
+   11.4 CREAR ARCHIVO SIN SOBREESCRITURA
+   11.5 EXPORTAR DATOS FORMATO ARRAY 
+   11.6 SABER NOMBRE DEL DOCUMENTO Y EXTENSION
+   11.7 SABER RUTA DEL DOCUMENTO
+   11.8 SABER EXTENSION DEL DOCUMENTO
+   11.9 SABER NOMBRE DEL DOCUMENTO
+   11.10 GLOB OBENETER ARRAY LISTADO DE TODOS LOS DOCUMENTOS
+   11.11 GLOB OBENETER ARRAY LISTADO DE TODOS LOS DOCUMENTOS Y CON VARIAS EXTENSIONES
+   11.12 EXTRA
+
+12. AJAX - (LÍNEA 1295)
+   12.1 LEER DATOS Y CODIFICAR JSON
+   12.2 INSERTAR DATOS DATOS Y CODIFICAR JSON
+   12.3 LEER DATOS E INSERTAR HTML JAVASCRIT
+   12.4 ENVIAR DATOS A PHP
+
+*/
+
+
+?>
+
+
+
+<?php
+//1.INTRODUCIÓN
+?>
+<?php
+//1.1 COMENTARIOS
+
+   // Comentarios
+    
+   /*
+        - //
+        - #
+        - / * * /
+
+   */
+?>
+
+<?php
+//1.2 VARIABLES
+
+   /*
+    - Key sensitive
+    - No puede llevar espacios
+    - No puede empezar por numeros
+    - No puede tener signos especiales excepto el _
+   */
+
+    echo "<h4> Comentario con variable </h4>";
+    $var1 = "Edu";
+    echo "Hola: $var1";
+
+    echo "<h4> Comentario con concatenación </h4>";
+    echo 'Hola: ' . $var1;
+
+    echo "<h4> Tipo de dato </h4>";
+    echo  gettype($var1);
+
+    echo "<h4> Boleanos </h4>";
+    $boolean = true;
+    echo $boolean . "<br>";
+?>
+
+<?php
+//1.3 CONSTANTES
+
+   /*
+    - Accesible desde cualquier parte del codigo
+    - Se pone en MAYUSCULA para distingir
+
+   */
+
+   define('NUM_PI', 3.14);
+   echo NUM_PI;
+?>
+
+<?php
+// 1.4 ARREGLOS
+       /*
+    - Accesible desde cualquier parte del codigo
+    - Se pone en MAYUSCULA para distingir
+
+    */
+
+   $semana = array('lunes', 'martes', 'jueves');
+   echo $semana[0] . " " . $semana[1] . " " .$semana[2] . "<br>";
+
+   // Modificar array
+   $semana[2] = 'miercoles';
+   echo $semana[0] . " " . $semana[1] . " " .$semana[2] . "<br>";
+
+   // Formato actual de construcción
+   $meses = ['enero', 'febrero', 'abril'];
+   echo $meses[0] . " " . $meses[1] . " " .$meses[2];
+?>
+
+<?php
+// 1.5 ARREGLOS ASOCIATIVOS
+
+   $persona = array('nombre' => 'Edu', 'edad' => 23, 'sexo' => 'Masculino ');
+
+   //Acceso y sobre escritura formato
+   echo $persona['nombre'];
+?>
+
+<?php
+// 1.6 ARREGLOS MULTIDIMENSIONALES
+
+   $amigos = array(array('juan', 20), array('pepe',30));
+
+   //Acceso y sobre escritura formato
+   echo $amigos[0][0] . " " . $amigos[0][1] . " " . $amigos[1][0] . " " . $amigos[1][1];
+?>
+
+<?php
+// 1.6.1 ARREGLOS MULTIDIMENSIONALES EJEMPLO EXTRA
+
+   $amigos = array(array('juan', 20), array('pepe',30));
+
+   //Acceso y sobre escritura formato
+   echo $amigos[0][0] . " " . $amigos[0][1] . " " . $amigos[1][0] . " " . $amigos[1][1];
+?>
+
+<?php
+// 1.7 FUNCIONES PARA ARREGLOS
+
+   $var1 = ['a','b','c','d'];
+
+   //Contar arreglo
+   echo count($var1) . "<br/>";
+
+   //Obtener la ultima posición del arreglo
+   echo $var1[count($var1)-1];
+
+   //Recorrer arreglo: proyectos\ab_for_each.html
+      // - foreach
+   
+   // Recorrer arreglo en orden alfabeitco: 
+      // - sort
+      // - rsort
+?>
+
+<?php 
+// 1.8 OPERADORES
+
+   /* Operadores Aritméticos:
+
+   +	Suma
+   -	Resta
+   *	Multiplicación
+   /	División
+
+   */
+
+   /* Operadores de Asignación:
+
+   =
+   +=
+   -=
+   *=
+   /=
+
+   */
+
+   /* Operadores de Comparación:
+
+   ==
+   ===
+   !=, <>
+   !==
+   >
+   <
+   >=
+   <=
+
+   */
+
+
+   /* Operadores Lógicos:
+
+   and, &&
+   or, ||
+   xor
+   !
+
+   -- */
+   // $numero = 10;
+
+   // if ($numero >= 10 && $numero < 20) {
+   // 	echo "Ejecuta";
+   // }
+
+   /* Operadores de Incremento / Decremento:
+
+   ++$x
+   $x++
+   --$x
+   $x--
+
+   -- */
+
+
+   /* Operadores de Cadenas:
+   .
+   .=
+
+   -- */
+
+   $texto = 'Cadena de Texto';
+   $texto .= ' Una segunda Cadena de Texto';
+
+   echo $texto;
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+//2. CONDICIONALES
+?>
+
+<?php
+// 2.1 CONDICIONAL IF - ELSE
+
+   $edad = 18;
+
+   if($edad > 18){
+      echo "Es mayor de edad";
+   }else if ($edad == 18 ){
+      echo "Tiene 18 años";
+   }else{
+      echo "Es menor de edad";
+   };
+
+?>
+
+<?php
+// 2.1 CONDICIONAL SWITCH
+
+   $dia = 2;
+
+  switch($dia){
+   case 1:
+      echo "Lunes";
+      break;
+   case 2:
+      echo "Martes";
+      break;
+   case 3: 
+      echo "Miercoles";
+      break;
+   default:
+      echo "Fuera de rango";
+  };
+
+?>
+
+<?php
+// 2.2 CONDICIONAL TERNARIO
+
+  $var_edad = 19 ;
+
+  // isset nos devuelve true o false respecto si tiene o no tiene contenido
+
+  $var_edad =  (isset($var_edad)) ? "Hay un dato: $var_edad" : "No hay un dato";
+  echo $var_edad;
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+//3. CICLO
+?>
+
+<?php
+// 3.1 CICLO FOR
+
+   for ($i=0; $i < 5; $i++) { 
+      echo "<li>" . $i .  "</li>";
+   };
+
+   $var1 = ['a','b','c','d'];
+
+   for ($i=0; $i < count($var1) ; $i++) { 
+      echo "<li>" . $var1[$i] .  "</li>";
+   };
+
+?>
+
+<?php
+// 3.2 CICLO WHILE
+
+  $i = 0;
+
+  while ($i < 5) {
+   echo "<li>" . $i .  "</li>";
+   $i++;
+  };
+
+  $i = 0;
+  $var1 = ['a','b','c','d'];
+
+  while ($i < count($var1)) {
+   echo "<li>" . $var1[$i] .  "</li>";
+   $i++;
+  };
+?>
+
+<?php
+// 3.3 CICLO DO WHILE
+
+  $i = 8;
+
+  do {
+   echo "<li>" . $i .  "</li>";
+   $i ++;
+  } while ($i <= 5);
+?>
+
+<?php
+// 3.4 CICLO FOR EACH
+
+   $var1 = ['a','b','c','d'];
+
+   foreach ($var1 as $value) {
+      echo "<li>" . $value .  "</li>";
+   };
+
+   $persona = array('nombre' => 'Edu', 'edad' => 23, 'sexo' => 'Masculino ');
+
+   foreach ($persona as $key => $value) {
+      echo "<li>"  . $key . ": " . $value .  "</li>";
+   }
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+//4. EXTRA
+?>
+
+<?php
+// 4.1 SENTENCIA BREAK
+
+   $var1 = ['a','b','c','d'];
+
+   foreach ($var1 as $value) {
+      echo "<li>" . $value .  "</li>";
+
+     if ($value == 'c') {
+      break;
+     };
+   };
+   
+   echo "<br/>";
+
+   foreach ($var1 as $value) {
+
+     if ($value == 'c') {
+      continue;
+     };
+
+     echo "<li>" . $value .  "</li>";
+   };
+?>2
+
+<?php
+// 4.2 FUNCIÓN VAR_DUMP
+
+   /*
+      - Tipo de datos, ejemplo string
+      - Numero de caracteres
+      - Valor
+   */
+
+   $var1 = ['a','b','c','d'];
+   echo "<pre>" .  var_dump($var1) .  "</pre>" ;
+   
+?>
+
+<?php
+// 4.3 FUNCIÓN PRINT_R
+   /*
+      - Mustra información de una formal legible humana
+      - Muestra el contenido pero no el tipo de archivo
+   */
+
+   $var1 = ['a','b','c','d'];
+   echo "<pre>" .  print_r($var1) .  "</pre>" ;
+   
+?>
+
+<?php
+// 4.4 OPERADOR DE NACE ESPACIAL
+         1 <=> 1
+             - Nos devuelve 1 si es la valor de la izquierda es mayor
+             - Nos devuelve 0 si ambos valores son iguales
+             - Nos devuelve -1 si el de la derecha es mayo
+   */
+
+   echo 10 <=> 1;
+   echo "<br/>";
+   echo 10 <=> 10;
+   echo "<br/>";
+   echo 1 <=> 10;
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+//5. FUNCIONES
+?>
+
+<?php
+// 5.1 FUNCIONES
+   function saludo(){
+      echo "Hola a todos";
+   };
+
+     saludo();
+
+?>
+
+<?php
+// 5.2 FUNCIONES CON PARÁMETRO
+   function saludoPersona($nombre){
+      echo "Hola a $nombre";
+   };
+
+   saludoPersona("Edu");
+?>
+
+<?php
+// 5.3 FUNCIONES CON PARÁMETRO Y RETURN
+   function sumar($num1, $num2){
+      return $num1 + $num2;
+   };
+
+   $result = sumar(5,5);
+
+   echo $result;
+?>
+
+<?php
+// 5.4 FUNCIONES ESPECIALES PARA CADENA DE TEXTO 
+   
+   // htmlspecialchars();
+      /*
+         Nos permite utilizar caracteres especiales de html < > & "" '
+         Lo que nos devuelve &lt; &gt; &amp; &#039;
+      */
+         $texto = "< > & '";
+         echo htmlspecialchars($texto);
+
+   // stripslashes();
+      /*
+        Quita los caracteres de tipo /
+      */
+      $texto = "< > &  /'";
+      echo stripslashes($texto);
+
+
+   // trim();
+      /*
+         Eliminar los espacios
+      */
+
+
+   // strlen();
+      /*
+         Nos devuelve el número de caracteres de un string;
+      */
+         $texto = "abcdef";
+         echo "<br/>";
+         echo strlen($texto);
+
+
+   // substring();
+      /*
+         No devuleve un fragmento de texto substring(texto, desde donde quermeos empezar, cuantos caracteres);
+      */
+      $texto = "abcdef";
+      echo "<br/>";
+      echo substr($texto, 1, 2);
+
+
+   // stroupper() strolower();
+      /*
+         Mayuscula y minuscula
+      */
+
+
+   // strpos();
+       /*
+         Nos devuelve la posición de una leta o conjunto de ella
+         Link : https://www.php.net/manual/en/ref.strings.php
+      */
+         $texto = "Mi casa es blanca";
+         echo "<br/>";
+         echo strpos($texto, "casa");
+?>
+
+<?php
+// 5.5 FUNCIONES ESPECIALES PARA ARREGLO
+   
+   // extract();
+         /*
+            Extrae los valores como variable, es decir 'Edu', 23
+         */
+         $persona = array('nombre' => 'Edu', 'edad' => 23, 'sexo' => 'Masculino ');
+         extract($persona);
+
+         echo $nombre;
+         echo "<br/>";
+         echo $edad;
+         echo "<br/>";
+         echo $sexo;
+
+
+   // array_pop();
+         /*
+            Extrae el ultimo valor y se guarda en una variable, pero se lemina el elemento final del array
+         */
+         $var1 = array('a','b','c','d');
+            foreach($var1 as $var){
+               echo "<li>" . $var . "</li>";
+            };
+         echo "<br/>";
+      
+         $var2 = array_pop($var1);
+         echo $var2;
+         echo "<br/>";
+
+            foreach($var1 as $var){
+               echo "<li>" . $var . "</li>";
+            };
+         echo "<br/>";
+
+
+   // join();
+         /*
+            Une los elementos de un array
+         */
+         $var1 = array('a','b','c','d');
+
+         $var2 = join("-",$var1);
+         echo $var2;
+
+
+   // array_reverse();
+         /*
+            Da la vuelta a un array
+         */
+         $var1 = array('a','b','c','d');
+         $var2 = array_reverse($var1);
+
+         echo "<br/>";
+         echo join("-",$var2);
+         
+?>
+
+<?php
+// 5.6 FUNCIONES MATEMÁTICAS
+   /*
+
+      - round(); Redondeo de un numero expre round(variable, num de decimales);
+      - rand(); Numero al azar rand(rango_min, rango_max);
+      - ceil(): Redondear hacia arriba un número;
+      - M_PI; 
+
+   */
+?>
+
+<?php
+// 5.7 INCLUDE & REQUIRED 
+   /* 
+         - Llamar a un archivo en otro lugar con include o required.
+            - Inclue nos marca un warning y la pagina sigue funcionando pero required no funciona al darnos un error
+         - include_once y required_onde solo te permite ejecutar una sola vez
+   */
+
+   include './proyectos/funciones_in.php';
+   echo sumatorioNumeros(3,5);
+?>
+
+<?php
+// 5.8 FUNCIÓN DIE
+   /* 
+         - Nos permite para la ejecución de la página
+   */
+  
+   //die();
+  echo "hola";
+?>
+
+<?php
+// 5.8 DECLARACIONES ESCALARES
+   /*
+         Este tipo de declaraciones podemos incluir el tipo de dato de la fucción para que nos salga un warning
+   */
+
+   function cuadrado(int $num1){
+      return $num1 * $num1; 
+   };
+
+   echo cuadrado(7);
+   echo "<br/>";
+   echo cuadrado('5');
+
+   //Acepta '5' porque los transforma a un digito, para que esto no suceda tenemos que poner
+
+   //declare(strict_types = 1);
+?>
+
+<?php
+// 5.9 DECLARACIONES DE TIPO DEVOLUCIÓN
+   /*
+         Nos devuelve un tipo de dato en el return
+   */
+
+   function obtenerEdad() :int{
+      $edad = 25;
+      return $edad;
+   };
+
+   echo obtenerEdad();
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+//6. PROGRAMACIÓN ORIENTADA A OBJETOS
+?>
+
+<?php
+// 6.1 CREACIÓN DE CLASES
+    class Persona {
+        public $nombre;
+        public $edad;
+
+        function __construct($nombre, $edad){
+            $this->nombre = $nombre;
+            $this->edad = $edad;
+        }
+
+        public function mostrarNombre(){
+            echo 'Su nombre es: ' .  $this->nombre;
+            return $this;
+        }
+
+        public function mostrarEdad(){
+            echo 'Su edad es: ' . $this->edad;
+            return $this;
+        }
+    };
+        $persona = new Persona('edu', 33);
+        echo $persona->mostrarNombre()->mostrarEdad();
+
+?>
+
+<?php
+// 6.2 CREACIÓN DE CLASES ABSTRACTA
+    
+   abstract class Persona {
+      public $nombre;
+      public $edad;
+
+      function __construct($nombre, $edad){
+         $this->nombre = $nombre;
+         $this->edad = $edad;
+      }
+
+      public function mostrarInfo(){
+         return $this->nombre . " " . $this-> edad;
+      }
+   };
+
+
+
+   class Estudiante extends Persona{
+
+      public $carrera;
+
+      function __construct($nombre, $edad, $carrera){
+         parent::__construct($nombre, $edad);
+         $this->carrera = $carrera;
+      }
+
+      public function mostrarInfo(){
+         return $this->nombre . " " . $this-> edad . " " . $this->carrera;
+      }
+   };
+
+
+   $persona1 = new Persona('Edu', 26);
+   $persona2 = new Estudiante('Edu', 26, 'Informatica');
+
+
+   echo $persona1->mostrarInfo();
+   echo $persona2->mostrarInfo();
+?>
+
+<?php
+// 6.3 HERENCIA
+   class Persona {
+      public $nombre;
+      public $edad;
+
+      function __construct($nombre, $edad){
+         $this->nombre = $nombre;
+         $this->edad = $edad;
+      }
+
+      public function mostrarInfo(){
+         return $this->nombre . " " . $this-> edad;
+      }
+   };
+
+
+
+   class Estudiante extends Persona{
+
+      public $carrera;
+
+      function __construct($nombre, $edad, $carrera){
+         parent::__construct($nombre, $edad);
+         $this->carrera = $carrera;
+      }
+
+      public function mostrarInfo(){
+         return $this->nombre . " " . $this-> edad . " " . $this->carrera;
+      }
+   };
+
+
+   $persona1 = new Persona('Edu', 26);
+   $persona2 = new Estudiante('Edu', 26, 'Informatica');
+
+
+   echo $persona1->mostrarInfo();
+   echo $persona2->mostrarInfo()
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// 7. FORMULARIOS
+?>
+
+<?php
+// 7.1 REENVIO ACTION AL MISMO PHP
+   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+?>
+
+<?php
+// 7.2 FORMULARIO GET
+   // HTML
+   <form action="recibe-get.php" method="get">
+
+   //PHP
+   if ($_GET) {
+      $nombre = htmlspecialchars($_GET['nombre']);
+      $sexo = htmlspecialchars($_GET['sexo']);
+      $year = htmlspecialchars($_GET['year']);
+      $terminos = htmlspecialchars($_GET['terminos']);
+      echo $nombre;
+  }else{
+      // Redirigir al formulario
+      header('Location: http://localhost/CursoPHP/temario-formularios/post/temario-formularios-post.php');
+  };
+
+  echo $nombre . " " . $sexo  . " " . $year . " " . $terminos;
+
+?>
+
+<?php
+// 7.3 FORMULARIO POST
+   php
+   if ($_POST) {
+      $nombre = $_POST['nombre'];
+      $sexo = $_POST['sexo'];
+      $year = $_POST['year'];
+      $terminos = $_POST['terminos'];
+      echo $nombre;
+   }else{
+      // Redirigir al formulario
+      header('Location: http://localhost/CursoPHP/temario-formularios/post/temario-formularios-post.php');
+   };
+
+?>
+
+<?php
+// 7.4 FORMULARIO VALIDACIÓN
+   // HTML
+   php
+   $errores = '';
+
+   if(isset($_POST['submit'])){
+      $nombre = $_POST['nombre'];
+      $correo = $_POST['correo'];
+
+      if(!empty($nombre)){ // Anti inyección de código
+         $nombre = trim($nombre);// Espacios
+         $nombre = htmlspecialchars($nombre); //Caracteres especiales
+         $nombre = stripslashes($nombre); //Nos quita estos símbolos
+         $nombre = filter_var($nombre, FILTER_SANITIZE_STRING);  
+      }else{
+         $errores .= 'Por favor introduzca un nombre <br/>';
+      };
+
+      if(!empty($correo)){ // Anti inyección de código
+         $correo = trim($nombre);// Espacios
+         $correo = filter_var($correo, FILTER_SANITIZE_EMAIL);
+         if(!filter_var($correo,FILTER_VALIDATE_EMAIL)){
+               $errores .= 'Correo invalido <br/>';
+         };  
+      }else{
+         $errores .= 'Por favor introduzca un correo <br/>';
+      };
+   };
+
+
+  
+
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./estilo.css" type="text/css">
+   <title>Document</title>
+   </head>
+   <body>
+
+   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+      <input type="text" name="nombre" placeholder="Nombre">
+      <input type="email" name="correo" placeholder="Correo">
+
+      <?php if(!empty($errores)): ?>
+         <div class="error"><?php echo $errores; ?></div>
+      <?php endif; ?>
+
+      <input type="submit" name="submit" >
+   </form>
+   </body>
+   </html>
+
+   // CSS
+   <?php
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $dato = $_SERVER['REQUEST_METHOD'];
+        echo "Metodo de envio $dato";
+    };
+
+    if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        $dato = $_SERVER['REQUEST_METHOD'];
+        echo "Metodo de envio $dato";
+
+
+?>
+
+<?php
+// 7.5 DOBLE FORMULARIO ELECCION
+   php
+   if(isset($_POST['form'])){
+      if($_POST['form'] == 'formulario1'){
+         echo 'Formulario 1';
+      };
+      if($_POST['form'] == 'formulario2'){
+         echo 'Formulario 2';
+      };
+   };
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// 8. SESIONES
+?>
+
+<?php
+// 8.1 APERTURA, CIERRE Y REINICIAR ARRAY
+   php
+   session_start();
+   session_destroy();
+   $_SESSION = array();
+?>
+
+<?php
+// 8.2 DECLARAR VARIABLE
+   session_start();
+
+    if($_SESSION){
+        $nombre = $_SESSION['nombre'];
+    }
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// 9. SISTEMA
+?>
+
+<?php
+// 9.1 $_FILES
+   EL OBJETO EXISTE EN SERVIDOR VACIO -->
+   Array
+   (
+      [foto] => Array
+         (
+               [name] => 
+               [full_path] => 
+               [type] => 
+               [tmp_name] => 
+               [error] => 4
+               [size] => 0
+         )
+
+   )
+
+
+   CUANDO HACEMOS SUBMIT SE RELLENA CON LOS DATOS DEL ARCHIVO -->
+   Array
+   (
+      [foto] => Array
+         (
+               [name] => internet-3116062__480.jpg
+               [full_path] => internet-3116062__480.jpg
+               [type] => image/jpeg
+               [tmp_name] => C:\xampp\tmp\php8180.tmp
+               [error] => 0
+               [size] => 100862
+         )
+
+   )
+?>
+
+<?php
+// 9.2 $_SERVER
+   Array
+      (
+         [MIBDIRS] => C:/xampp/php/extras/mibs
+         [MYSQL_HOME] => \xampp\mysql\bin
+         [OPENSSL_CONF] => C:/xampp/apache/bin/openssl.cnf
+         [PHP_PEAR_SYSCONF_DIR] => \xampp\php
+         [PHPRC] => \xampp\php
+         [TMP] => \xampp\tmp
+         [HTTP_HOST] => localhost
+         [HTTP_CONNECTION] => keep-alive
+         [HTTP_CACHE_CONTROL] => max-age=0
+         [HTTP_SEC_CH_UA] => "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+         [HTTP_SEC_CH_UA_MOBILE] => ?0
+         [HTTP_SEC_CH_UA_PLATFORM] => "Windows"
+         [HTTP_DNT] => 1
+         [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+         [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
+         [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/;q=0.8,application/signed-exchange;v=b3;q=0.9
+         [HTTP_SEC_FETCH_SITE] => none
+         [HTTP_SEC_FETCH_MODE] => navigate
+         [HTTP_SEC_FETCH_USER] => ?1
+         [HTTP_SEC_FETCH_DEST] => document
+         [HTTP_ACCEPT_ENCODING] => gzip, deflate, br
+         [HTTP_ACCEPT_LANGUAGE] => es-ES,es;q=0.9
+         [PATH] => C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\AutoFirma\AutoFirma;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Users\Eduar\AppData\Local\Microsoft\WindowsApps;;C:\Users\Eduar\AppData\Local\Programs\Microsoft VS Code\bin
+         [SystemRoot] => C:\Windows
+         [COMSPEC] => C:\Windows\system32\cmd.exe
+         [PATHEXT] => .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+         [WINDIR] => C:\Windows
+         [SERVER_SIGNATURE] => 
+      Apache/2.4.53 (Win64) OpenSSL/1.1.1n PHP/8.1.6 Server at localhost Port 80
+
+
+         [SERVER_SOFTWARE] => Apache/2.4.53 (Win64) OpenSSL/1.1.1n PHP/8.1.6
+         [SERVER_NAME] => localhost
+         [SERVER_ADDR] => ::1
+         [SERVER_PORT] => 80
+         [REMOTE_ADDR] => ::1
+         [DOCUMENT_ROOT] => C:/xampp/htdocs
+         [REQUEST_SCHEME] => http
+         [CONTEXT_PREFIX] => 
+         [CONTEXT_DOCUMENT_ROOT] => C:/xampp/htdocs
+         [SERVER_ADMIN] => postmaster@localhost
+         [SCRIPT_FILENAME] => C:/xampp/htdocs/CursoPHP/Practicas/Practica-5-galeria/subir.php
+         [REMOTE_PORT] => 55974
+         [GATEWAY_INTERFACE] => CGI/1.1
+         [SERVER_PROTOCOL] => HTTP/1.1
+         [REQUEST_METHOD] => GET
+         [QUERY_STRING] => 
+         [REQUEST_URI] => /CursoPHP/Practicas/Practica-5-galeria/subir.php
+         [SCRIPT_NAME] => /CursoPHP/Practicas/Practica-5-galeria/subir.php
+         [PHP_SELF] => /CursoPHP/Practicas/Practica-5-galeria/subir.php
+         [REQUEST_TIME_FLOAT] => 1664459653.0129
+         [REQUEST_TIME] => 1664459653
+      )
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// 10. CONEXION BASE DE DATOS
+?>
+
+<?php
+// 10.1 MÉTODO QUERY
+   try {
+      $conexion = new PDO('mysql:host=127.0.0.1;dbname=prueba_consola', 'root', '');
+      $resultados = $conexion->query('SELECT * FROM usuarios');
+   } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+   };
+
+      foreach($resultados as $resultado){
+         echo $resultado['nombre'] . '<br/>' ;
+      }
+?>
+
+<?php
+// 10.2 MÉTODO STATEMENT
+   $id = 3;
+   $nombre ='Antonio';
+
+   try {
+      $conexion = new PDO('mysql:host=127.0.0.1;dbname=prueba_consola','root','');
+      $statement = $conexion->prepare('SELECT * FROM usuarios WHERE id = :id AND nombre = :nombre');
+      $statement -> execute(
+         array(
+               ':id'=> $id,
+               ':nombre'=>$nombre
+         ));
+      $resultado = $statement->fetch();
+      $resultados = $statement->fetchAll();
+
+   } catch (PDOException $e){
+      echo $e;
+   }
+      echo '<pre>';
+      print_r($resultados);
+      echo '</pre>';
+?>
+
+<?php
+// 10.3 MÉTODO MYSQLI
+
+   //CONSULTA
+      $conexion = new mysqli('localhost', 'root', '', 'prueba_mysqli');
+         
+      if ($conexion -> connect_errno){ //nos devuelve 0 si está todo ok
+         die('Error en el servidor');
+      }else{
+         $sql = 'SELECT * FROM usuarios';
+         $datos = $conexion->query($sql);
+         
+         if($datos->num_rows){ //Si existen linea
+            while ($fila = $datos->fetch_assoc()) {
+               echo $fila['id'];
+               echo $fila['nombre'];
+            };
+         }else {
+            echo 'No hay datos';
+         };
+      }
+   
+   //INSERTAR
+   
+   $conexion = new mysqli('localhost', 'root', '', 'prueba_mysqli');
+   
+   if($conexion->connect_errno){
+       echo 'ERROR';
+   }else {
+       $sql = 'INSERT INTO usuarios(nombre) VALUES("Pepe")';
+       $conexion->query($sql);
+
+       if($conexion->affected_rows >=1){
+           echo 'Filas:' . $conexion->affected_rows;
+       };
+   };
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// 11. ARCHIVOS 
+?>
+
+<?php
+// 11.1 VER SI EXISTE UN ARCHIVO
+   $resultado = file_exists('../archivos/datos.txt');
+   echo print_r($resultado . '----'); //devuelve 1
+   echo var_dump($resultado); //Devuelve true
+?>
+
+<?php
+// 11.2 LECTURA ARCHIVO 
+    echo '<br/>' . file_get_contents('../archivos/prueba1.txt');
+?>
+
+<?php
+// 11.3 CREAR ARCHIVO CON SOBREESCRITURA
+   file_put_contents('../archivos/prueba1.txt','Hola mundo');
+?>
+
+<?php
+// 11.4 CREAR ARCHIVO SIN SOBREESCRITURA
+   file_put_contents('../archivos/prueba2.txt','Hola mundo', FILE_APPEND);
+?>
+
+<?php
+// 11.5 EXPORTAR DATOS FORMATO ARRAY 
+   $diccionario = file('../archivos/diccionario.txt');
+?>
+
+<?php
+// 11.6 SABER NOMBRE DEL DOCUMENTO Y EXTENSION
+   echo '<br/>' . pathinfo('../archivos/contador.txt', PATHINFO_BASENAME);
+?>
+
+<?php
+// 11.7 SABER RUTA DEL DOCUMENTO
+   echo '<br/>' . pathinfo('../archivos/contador.txt', PATHINFO_DIRNAME);
+?>
+
+<?php
+// 11.8 SABER EXTENSION DEL DOCUMENTO
+   echo '<br/>' . pathinfo('../archivos/contador.txt', PATHINFO_EXTENSION);
+?>
+
+<?php
+// 11.9 SABER NOMBRE DEL DOCUMENTO
+   echo '<br/>' . pathinfo('../archivos/contador.txt', PATHINFO_FILENAME);
+?>
+
+<?php
+// 11.10 GLOB OBENETER ARRAY LISTADO DE TODOS LOS DOCUMENTOS
+   $listado = glob('../archivos/*.txt');
+   echo '<br/> <pre>' . print_r($listado);  
+?>
+
+<?php
+// 11.11 GLOB OBENETER ARRAY LISTADO DE TODOS LOS DOCUMENTOS Y CON VARIAS EXTENSIONES
+   $listado = glob('../archivos/*.{txt,jpg}', GLOB_BRACE);
+   echo '<br/> <pre>' . print_r($listado);
+?>
+
+<?php
+// 11.12 EXTRA
+   echo '<br/>' . basename('../archivos/contador.txt');
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// 12. AJAX
+?>
+
+<?php
+// 12.1 LEER DATOS Y CODIFICAR JSON
+   error_reporting(0);
+   header('Content-type: application/json; chaset=utf-8');
+
+   $conexion = new mysqli('localhost', 'root', '','json');
+
+   if($conexion->connect_errno){ // SI hay algun error
+      $respuesta = [
+         'error' => true
+      ];
+
+   }else{
+      $conexion->set_charset("utf8");  //dar formato a la conexion
+      $statement = $conexion->prepare('SELECT * FROM usuarios');
+      $statement->execute();
+      $resultados = $statement->get_result(); // Obtener resultado
+
+      $respuesta = [];
+
+      while($fila = $resultados->fetch_assoc()){ // resultados de uno a uno
+         $usuarios = [
+               'id'    =>$fila['ID'],
+               'nombre'    =>$fila['nombre'],
+               'edad'  =>$fila['edad'],
+               'pais'  =>$fila['pais'],
+               'correo'    =>$fila['correo']
+         ];
+
+         array_push($respuesta, $usuarios);
+      };
+   };
+
+   echo json_encode($respuesta); //Pasar de array a json
+?>
+
+<?php
+// 12.2 INSERTAR DATOS DATOS Y CODIFICAR JSON 
+   error_reporting(0);
+   header('Content-type: application/json; chaset=utf-8');
+
+   $nombre = $_POST['nombre'];
+   $edad = $_POST['edad'];
+   $pais = $_POST['pais'];
+   $correo = $_POST['correo'];
+
+
+   function validarDatos($nombre, $edad, $pais, $correo){
+      if($nombre == ''){
+         return false;
+      }elseif ($edad == '' || is_int($edad)) {
+         return false;
+      }elseif ($pais == '') {
+         return false;
+      }elseif ($correo == '') {
+         return false;
+      }
+
+      return true;
+   };
+
+
+   if (validarDatos($nombre, $edad, $pais, $correo) == true) {
+      
+
+      $conexion = new mysqli('127.0.0.1', 'root', '', 'json');
+      $conexion->set_charset("utf8");
+      
+      if ($conexion->connect_errno) {
+         $respuesta = ['error' => true];
+      }else{
+         echo "<script>console.log('Console: " . "dentro" . " );</script>";
+         $statement = $conexion->prepare("INSERT INTO usuarios(nombre, edad, pais, correo) VALUES(?,?,?,?)");
+         $statement->bind_param("siss",$nombre, $edad, $pais, $correo);
+         $statement->execute();
+         
+         
+         if($conexion->affected_rows = 0){
+               
+               $respuesta = ['error' => true, 'mensaje' => 'conexion incorrecta'];
+         };
+      };
+
+   };
+   $respuesta = ['error' => false];
+
+   echo json_encode($respuesta);
+   ?>
+
+   
+<?php
+
+// 12.3 LEER DATOS E INSERTAR HTML JAVASCRIT
+   let btn = document.getElementById('btn_cargar_usuarios');
+
+   eventelisteners();
+   function eventelisteners(){
+      btn.addEventListener('click', cargarUsarios()); 
+
+      formulario.addEventListener('submit', agregarUsuario);
+
+   };
+
+   function cargarUsarios(){
+      tabla.innerHTML = `  
+                  <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Edad</th>
+                  <th>Pais</th>
+                  <th>Correo</th>
+               </tr> `;
+
+      let peticion = new XMLHttpRequest(); // CREAMOS OBJETO PETICION
+      
+      peticion.open('GET', 'php/leer-datos.php'); //COORDENADAS DE LA PETICION
+
+   
+      loader.classList.add('active');
+
+
+      peticion.onload = function(){  // ACCION DESPUES DE QUE LA PETICION ESTÉ REALIZADA
+         let datos = JSON.parse(peticion.responseText); // TRANSFORMACION DE LOS DATOS A JSON
+         console.log(datos);
+         if (datos.error) {
+               errro_box.classList.add('active');
+         }else{
+               for (let i = 0; i < datos.length; i++) {
+                  let elemento = document.createElement('tr');
+                  elemento.innerHTML += `<td>${datos[i].id}</td>`;
+                  elemento.innerHTML += `<td>${datos[i].nombre}</td>`;
+                  elemento.innerHTML += `<td>${datos[i].pais}</td>`;
+                  elemento.innerHTML += `<td>${datos[i].corre}</td>`;
+                  
+                  tabla.appendChild(elemento);
+               }
+         }
+      }
+
+      peticion.onreadystatechange = function() { // ACCION CUANDO LA EPTICION Y LA RECEPCION ESTE CORRECTA
+         if(peticion.readyState == 4 && peticion.status == 200){ // READY ESTATE 1,2,3,4 LOS ESTADO POR LOS CUALES PASA LA PETICION -- 200 ESTADO DE LA PETICON
+               loader.classList.remove('active');
+         }
+      }
+
+      peticion.send(); // ENCIAR PETICION
+
+   };
+?>
+
+<?php
+// 12.4 ENVIAR DATOS A PHP
+   function agregarUsuario(e){
+      e.preventDefault(); //EVISTAMOS REINICIO DE FORMULARIO
+   
+      let peticion = new XMLHttpRequest(); CREAMOS LA PETICION
+      peticion.open('POST', 'php/insertar-datos.php'); // INDICAMOS EL METODO DE ENVIO Y ARCHIVO PHP
+
+      usuario_nombre = formulario.nombre.value.trim();
+      usuario_edad = parseInt(formulario.edad.value.trim());
+      usuario_pais = formulario.pais.value.trim();
+      usuario_correo = formulario.correo.value.trim();
+
+      if(formulario_valido(usuario_nombre, usuario_edad, usuario_pais, usuario_correo)){
+         errro_box.remove('active');
+         
+         let parametros = `nombre=${usuario_nombre}&edad=${usuario_edad}&pais=${usuario_pais}&correo=${usuario_correo}`; // HACEMOS FORMATO GET
+         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded"); // DATOS DE PETICION
+
+         peticion.onload = function(){   //  RECARGA DATOS
+            cargarUsarios();
+            formulario.nombre.value = '';
+            formulario.edad.value = '';
+            formulario.pais.value = '';
+            formulario.correo.value = '';
+         }
+
+         peticion.onreadystatechange = function(){ // ESTADO DE LA PETICION
+            if(peticion.readyState == 4 && peticion.status == 200){
+                  console.log(ok);
+            };
+         };
+
+         peticion.send(parametros); // ENVIAR DATOS
+      }else{
+         errro_box.classList.add('active');
+         errro_box.innerHTML = "Rellene todos los campos del formulario";
+      }
+      
+   };
+?>
