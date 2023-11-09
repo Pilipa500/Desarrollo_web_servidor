@@ -1,0 +1,208 @@
+https://desarrolloweb.com/articulos/funciones-para-trabajo-arrays-php.html
+Vemos algunas de las funciones típicas del trabajo con arrays a través de una pequeña explicación y un código de ejemplo de uso.
+
+En el artículo anterior, sobre Arrays en PHP, explicamos cómo era la sintaxis para la creación de este tipo de estructuras de datos
+en PHP. Ahora que ya sabes cómo crear arrays, tanto con índices numéricos como con índices asociativos, vamos a ver varios ejemplos de trabajo
+en PHP que ilustrarán un poco el funcionamiento de algunas de las funciones de arrays (arreglos, vectores, matrices o tablas en castellano).
+
+Este artículo además te servirá para conocer y aprender a usar algunas de las funciones más útiles que trae consigo PHP para el trabajo
+y manipulación de arrays. Tenemos que advertir que, si estás comenzando con PHP leyendo el Manual de PHP de DesarrolloWeb.com, algunos 
+de los ejemplos verás que tienen código con elementos del lenguaje que no hemos tocado todavía, como las estructuras de control para hacer
+bucles con los que recorrer los elementos de un arreglo. Esperamos que no te despiste. Recuerda que más adelante en este manual podrás
+encontrar explicaciones sobre todo ello. Dicho eso, vamos sin más a introducirnos en materia con varios ejemplos interesantes.
+
+Los ejemplos que podrás encontrar están divididos en dos secciones, aumentar el número de posiciones de un array o reducir el número de casillas disponibles.
+
+Reducir el tamaño de un array
+Con las siguientes funciones consigues quitar elementos en un array. Veremos cómo retirar casillas de arrays de tres maneras distintas,
+pero recuerda que tienes muchas más alternativas si lees la documentación de funciones para trabajo con Arrays.
+
+array_slice()
+Para disminuir el número de casillas de un arreglo tenemos varias funciones. Entre ellas, array_slice() la utilizamos cuando queremos recortar
+algunas casillas del arreglo, sabiendo los índices de las casillas que deseamos conservar.
+
+Recibe tres parámetros. El array, el índice del primer elemento y el número de elementos a tomar, siendo este último parámetro opcional.
+
+En el ejemplo siguiente tenemos un array con cuatro nombres propios. En la primera ejecución de array_slice() estamos indicando que deseamos
+tomar todos los elementos desde el índice 0 (el principio) hasta un número total de 3 elementos.
+
+El segundo array_slice() indica que se tomen todos los elementos a partir del índice 1 (segunda casilla).
+
+<?php
+$entrada = array ("Miguel", "Pepe", "Juan", "Julio", "Pablo");
+
+//modifico el tamaño
+$salida = array_slice ($entrada, 0, 3);
+//muestro el array
+foreach ($salida as $actual)
+   	echo $actual . "<br>";
+
+echo "<p>";
+//modifico otra vez
+$salida = array_slice ($salida, 1);
+
+//muestro el array
+foreach ($salida as $actual)
+   	echo $actual . "<br>";
+
+?>
+Tendrá como salida:
+
+Miguel
+Pepe
+Juan
+
+Pepe
+Juan
+
+array_shift()
+Esta función extrae el el primer elemento del array y lo devuelve. Además, acorta la longitud del array eliminando el elemento
+que estaba en la primera casilla. Siempre hace lo mismo, por tanto, no recibirá más que el array al que se desea eliminar la primera posición.
+
+En el código siguiente se tiene el mismo vector con nombres propios y se ejecuta dos veces la función array_shift() eliminando un elemento
+en cada ocasión. Se imprimen los valores que devuelve la función y los elementos del array resultante de eliminar la primera casilla.
+
+<?php
+$entrada = array ("Miguel", "Pepe", "Juan", "Julio", "Pablo");
+
+//quito la primera casilla
+$salida = array_shift ($entrada);
+//muestro el array
+echo "La función devuelve: " . $salida . "<br>";
+foreach ($entrada as $actual)
+   	echo $actual . "<br>";
+echo "<p>";
+
+//quito la primera casilla, que ahora sería la segunda del array original
+$salida = array_shift ($entrada);
+echo "La función devuelve: " . $salida . "<br>";
+//muestro el array
+foreach ($entrada as $actual)
+   	echo $actual . "<br>";
+?>
+Da como resultado:
+
+La función devuelve: Miguel
+Pepe
+Juan
+Julio
+Pablo
+
+La función devuelve: Pepe
+Juan
+Julio
+Pablo
+
+unset()
+Se utiliza para destruir una variable dada. En el caso de los arreglos, se puede utilizar para eliminar una casilla de un array asociativo
+(los que no tienen índices numéricos sino que su índice es una cadena de caracteres).
+
+Veamos el siguiente código para conocer cómo definir un array asociativo y eliminar luego una de sus casillas.
+
+<?php
+$estadios_futbol = array("Barcelona"=> "Nou Camp","Real Madrid" => "Santiago Bernabeu","Valencia" => "Mestalla","Real Sociedad" => "Anoeta");
+
+//mostramos los estadios
+foreach ($estadios_futbol as $indice=>$actual)
+   	echo $indice . " -- " . $actual . "<br>";
+
+echo "<p>";
+
+//eliminamos el estadio asociado al real madrid
+unset ($estadios_futbol["Real Madrid"]);
+
+//mostramos los estadios otra vez
+foreach ($estadios_futbol as $indice=>$actual)
+   	echo $indice . " -- " . $actual . "<br>";
+?>
+La salida será la siguiente:
+
+Barcelona -- Nou Camp
+Real Madrid -- Santiago Bernabeu
+Valencia -- Mestalla
+Real Sociedad -- Anoeta
+
+Barcelona -- Nou Camp
+Valencia -- Mestalla
+Real Sociedad -- Anoeta
+
+Aumentar el tamaño de un array
+Tenemos también a nuestra disposición varias funciones que nos pueden ayudar a aumentar el número de casillas de un arreglo.
+
+array_push()
+Inserta al final del array una serie de casillas que se le indiquen por parámetro. Por tanto, el número de casillas del array
+aumentará en tantos elementos como se hayan indicado en el parámetro de la función. Devuelve el número de casillas del array resultante.
+
+Veamos este código donde se crea un arreglo y se añaden luego tres nuevos valores.
+
+<?php
+$tabla = array ("Lagartija", "Araña", "Perro", "Gato", "Ratón");
+
+//aumentamos el tamaño del array
+array_push($tabla, "Gorrión", "Paloma", "Oso");
+
+foreach ($tabla as $actual)
+   	echo $actual . "<br>";
+?>
+Da como resultado esta salida:
+
+Lagartija
+Araña
+Perro
+Gato
+Ratón
+Gorrión
+Paloma
+Oso
+
+array_merge()
+Ahora vamos a ver cómo unir dos arrays utilizando la función array_merge(). A ésta se le pasan dos o más arrays por parámetro y devuelve un
+arreglo con todos los campos de los vectores pasados.
+
+En este código de ejemplo creamos tres arrays y luego los unimos con la función array_merge()
+
+<?php
+$tabla = array ("Lagartija", "Araña", "Perro", "Gato", "Ratón");
+$tabla2 = array ("12","34","45","52","12");
+$tabla3 = array ("Sauce","Pino","Naranjo","Chopo","Perro","34");
+
+
+//aumentamos el tamaño del array
+$resultado = array_merge($tabla, $tabla2, $tabla3);
+
+foreach ($resultado as $actual)
+   	echo $actual . "<br>";
+?>
+Da como resultado:
+
+Lagartija
+Araña
+Perro
+Gato
+Ratón
+12
+34
+45
+52
+12
+Sauce
+Pino
+Naranjo
+Chopo
+Perro
+34
+
+Una última cosa. También pueden introducirse nuevas casillas en un arreglo por los métodos habituales de asignar las nuevas posiciones
+en el array a las casillas que necesitemos.
+
+En arrays normales se haría así:
+
+$tabla = array ("Sauce","Pino","Naranjo");
+$tabla[3]="Algarrobo";
+En arrays asociativos:
+
+$estadios_futbol = array("Valencia" => "Mestalla","Real Sociedad" => "Anoeta");
+$estadios_futbol["Barcelona"]= "Nou Camp";
+Veremos más adelante otras posibilidades del trabajo con arrays.
+
+Referencia:en el taller de PHP tenemos artículos sobre el trabajo con arrays en PHP. Entre otros encontrarás uno que trata un tema de frecuente consulta: los distintos tipos de ordenación de arrays en PHP: Ordenar arrays con PHP
