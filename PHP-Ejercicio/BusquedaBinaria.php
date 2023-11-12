@@ -22,8 +22,7 @@
         <input type="number" name="numero">
         <input type="submit" name="buscar" value="Buscar">
     </form>
-    <p><?php echo $resultado; ?></p>
-
+    
     <?php
 
     $miArray = array(5, 10, 18, 23, 27, 43, 50); //definición del array
@@ -70,7 +69,7 @@ if (isset($_POST['buscar'])) {
 }
 
 ?>
-   
+   <p><?php echo $resultado; ?></p>
 
 </body>
 
