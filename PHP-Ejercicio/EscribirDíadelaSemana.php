@@ -14,8 +14,12 @@ de la semana.-->
         <input type="submit" value="Aceptar">
     </form>
     <?php
-    $seleccion=$_POST['seleccion'];
-    switch ($seleccion){
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Verifica que se haya enviado el formulario
+        if (isset($_POST['seleccion'])) {
+            $seleccion = $_POST['seleccion'];
+        }}
+      switch ($seleccion){
         case 1:
             $dia="lunes";
             break;
