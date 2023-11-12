@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Búsqueda Binaria</title>
+</head>
+<body>
+    <?php
+    // Paso 1: Declaro el array y lo inicializo.
+    $array = array(5, 10, 18, 23, 27, 43, 50);
+
+    // Paso 2: Verifico si se ha enviado un número para buscar.
+    if (isset($_POST['numero_buscar'])) {
+        $numero_a_buscar = (int)$_POST['numero_buscar'];
+
+        // Paso 3: Implemento la búsqueda binaria.
+        $indice = array_search($numero_a_buscar, $array);
+
+        // Paso 4: Muestro un mensaje indicando el resultado.
+        if ($indice !== false) {
+            echo "El número $numero_a_buscar se ha encontrado en el índice $indice del array.";
+        } else {
+            echo "El número $numero_a_buscar no se ha encontrado en el array.";
+        }
+    }
+    ?>
+    <form method="post">
+        <!-- Paso 5: Creo una entrada numérica para introducir el número a buscar. -->
+        <label for="numero_buscar">Número a buscar:</label>
+        <input type="number" name="numero_buscar" id="numero_buscar" required>
+
+        <!-- Paso 6: Creo un botón para ejecutar la búsqueda. -->
+        <input type="submit" value="Buscar">
+    </form>
+</body>
+</html>
