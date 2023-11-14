@@ -1,39 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todos los dados</title>
+    <title>Solitario de Dados</title>
 </head>
 <body>
-    <h1>Todos los dados</h1>
+    <h1>Solitario de Dados</h1>
     <p>Si sacas todos los dados en menos de doce tiradas, habrás ganado, en caso contrario habrás perdido.</p>
 
     <?php
-    // 1. Generar array con 6 números aleatorios del 1 al 6
-    $randomArray = array();
-    while (count($randomArray) < 6) {
-        $randomArray[] = rand(1, 6);
+    // 1. Inicializar variables
+    $objetivo = range(1, 6); // Array con los valores objetivo
+    $tiradas = array();
+    
+    // 2. Realizar tiradas hasta que se alcance el objetivo o se hagan 12 tiradas
+    $intentos = 0;
+    while (count(array_intersect($tiradas, $objetivo)) < 6 && $intentos < 12) {
+        $tirada = rand(1, 6);
+        $tiradas[] = $tirada;
+        $intentos++;
     }
 
-    // 2. Contar los valores que hay en el array
-    $valueCounts = array_count_values($randomArray);
+    // 3. Contar la frecuencia de cada valor
+    $valueCounts = array_count_values($tiradas);
 
-    // 3. Mostrar el resultado de cada una de las tiradas
-    echo "Resultado de cada tirada: " . implode(', ', $randomArray) . "<br>";
+    // 4. Mostrar el resultado de cada tirada
+    echo "Resultado de cada tirada: " . implode(', ', $tiradas) . "<br>";
 
-    // 4. Mostrar la frecuencia de cada valor
+    // 5. Mostrar la frecuencia de cada valor
     echo "Frecuencia de cada valor:<br>";
-    for ($i = 1; $i <= 6; $i++) {
-        echo "Número $i: " . ($valueCounts[$i] ?? 0) . " veces<br>";
+    arsort($valueCounts); // Ordenar el array de frecuencias de mayor a menor
+    foreach ($valueCounts as $numero => $frecuencia) {
+        echo "Número $numero: $frecuencia veces<br>";
     }
 
-    // 5. Determinar si el jugador ha ganado o perdido
-    $numTiradas = count($randomArray);
-    if ($numTiradas < 12) {
-        echo "Has ganado. Has sacado $numTiradas tiradas &#128077;";
+    // 6. Determinar si el jugador ha ganado o perdido
+    if (count(array_intersect($tiradas, $objetivo)) == 6) {
+        echo "Has ganado. Has sacado $intentos tiradas &#128077;";
     } else {
-        echo "Has perdido. Has sacado $numTiradas tiradas &#128078;";
+        echo "Has perdido. Has sacado $intentos tiradas &#128078;";
     }
     ?>
 </body>
