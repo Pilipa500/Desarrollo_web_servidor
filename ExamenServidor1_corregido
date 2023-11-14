@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Todos los dados</h1>
-    <p>Si sacas todos los dados en menos de doce tiradas, habrás ganado, en caso contrario
-        habrás perdido.</p>
+    <p>Si sacas todos los dados en menos de doce tiradas, habrás ganado, en caso contrario habrás perdido.</p>
+
     <?php
     // 1. Generar array con 6 números aleatorios del 1 al 6
     $randomArray = array();
@@ -19,20 +19,16 @@
     // 2. Contar los valores que hay en el array
     $valueCounts = array_count_values($randomArray);
 
-    // Mostrar el resultado de cada una de las tiradas
-    echo "Resultado de cada tirada:\n";
-    foreach ($randomArray as $tirada) {
-        echo "$tirada ";
-    }
-    echo "\n";
+    // 3. Mostrar el resultado de cada una de las tiradas
+    echo "Resultado de cada tirada: " . implode(', ', $randomArray) . "<br>";
 
-    // Mostrar la frecuencia de cada valor
-    echo "Frecuencia de cada valor:\n";
+    // 4. Mostrar la frecuencia de cada valor
+    echo "Frecuencia de cada valor:<br>";
     for ($i = 1; $i <= 6; $i++) {
-        echo "Número $i: " . ($valueCounts[$i] ?? 0) . " veces\n";
+        echo "Número $i: " . ($valueCounts[$i] ?? 0) . " veces<br>";
     }
 
-    // Determinar si el jugador ha ganado o perdido
+    // 5. Determinar si el jugador ha ganado o perdido
     $numTiradas = count($randomArray);
     if ($numTiradas < 12) {
         echo "Has ganado. Has sacado $numTiradas tiradas &#128077;";
