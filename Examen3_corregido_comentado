@@ -1,0 +1,69 @@
+<!-- 
+    
+En este ejercicio se tiene que escribir un programa que muestre tres secuencias aleatorias de 10 bits y
+una cuarta secuencia que indique cuál es el bit más común en esa posición.
+Muestre también el número total de bits a 1 que hay entre todas las secuencias incluida la última.
+
+-->
+<?php
+function escribirSecuencia()//esta función genera y devuelve una secuencia aleatoria de 10 bits. Usando
+//un bucle for,, para generar cada bit de la secuencia y los almacena en un array llamado "$secuencia".
+//al final devuelve la secuencia generada.
+{
+
+    for ($i = 0; $i < 10; $i++) {
+        $bit = rand(0, 1);
+        $secuencia[] = $bit;
+    }
+    return $secuencia;
+}
+//Se generan las secuencias aletorias  ($a, $b, $c) llamando a la función escribirSecuencia().
+//Cada secuencia se convierte en una cadena de texto utilizando 'implode()' y se almacena en variables $secuencia1, 2 y 3
+//Las tres secuencias se imprimen en la pantalla usando echo dentro de etiquetas de html
+
+$a = escribirSecuencia();
+$secuencia1 = implode(" ", $a);
+$b = escribirSecuencia();
+$secuencia2 = implode(" ", $b);
+$c = escribirSecuencia();
+$secuencia3 = implode(" ", $c);
+
+
+
+echo "<h3> A: $secuencia1 </h3>";
+echo "<h3> B: $secuencia2 </h3>";
+echo "<h3> C: $secuencia3 </h3>";
+//función 'identificarBitMasComun($a,$b,$c) toma tres sencuencias como parametros y realiza el siguiente proceso:
+    //Itera sobre cada posición(bit) de las secuencias.
+    //Calcula la suma de bits en esa posición y verifica si la suma es mayor o igua a 2. i es así, considera que el
+    //bit más común es el 1, de lo contrario es el 0.
+    //Almacena el bit más común en un array llamado '$arrayPosicionesMasComunes'
+    //Muestra la sencuencia de bis más comunes ($secuencia4) y el numero total de bis a 1 en todas las sencuencias
+
+function identificarBitMasComun($a, $b, $c)
+{
+    $masComun = 0;
+    $sumaDeUnos = 0;
+    for ($i = 0; $i < 10; $i++) {
+        $sumaDeUnos += $a[$i] + $b[$i] + $c[$i];
+        if ($a[$i] + $b[$i] + $c[$i] >= 2) {
+            $masComun = 1;
+            $sumaDeUnos++;
+        } else {
+            $masComun = 0;
+        }
+        $arrayPosicionesMasComunes[] = $masComun;
+    }
+
+    $secuencia4 = implode(" ", $arrayPosicionesMasComunes);
+    echo "<h3> R: $secuencia4 </h3>";
+    echo "<h2> el bit 1 aparece $sumaDeUnos </h2>";
+}
+
+identificarBitMasComun($a, $b, $c);
+//En resumen, el código genera tres secuencias aleatorias de 10 bits 
+//y muestra cada una. Luego, determina y muestra una cuarta secuencia
+//que indica el bit más común en cada posición entre las tres secuencias.
+//Además, muestra el número total de bits a 1 en todas las secuencias
+
+?>
