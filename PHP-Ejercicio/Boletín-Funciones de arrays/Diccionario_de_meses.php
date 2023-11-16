@@ -42,7 +42,9 @@ $arrayMeses = [
             ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
             ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
         ];
-         mostrarTabla($mesalAzar, $arrayMeses);//tengo que desarrollar esta funcion!!!
+        function mostrarTabla($mesalAzar, $arrayMeses){
+
+        };//tengo que desarrollar esta funcion!!!
     }
     echo "<br>";
     var_dump (mostrarTabla);
