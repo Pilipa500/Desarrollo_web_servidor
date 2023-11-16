@@ -9,15 +9,18 @@
     <h1>TAbla de alumnos con su edad</h1>
     <p>Dadas las siguientes tablas con nombre y edad de los alumnos de dos clases diferentes:</p>
     <?php
-        $clase1=[
-            ["Juan"=>21],
-            ["María"=>19],
-            ["Pedro"=>24],
-            ["Antonio"=>30],
-            ["Carmen"=>24],
-            ["Carlos"=>26],
-            ["Lucía"=>22],
-        ];
+           $clase1= array(
+            "Juan", 21,
+            "María",19,
+            "Pedro",24,
+            "Antonio",30,
+            "Carmen",24,
+            "Carlos",26,
+            "Lucía",22,
+           );
+        var_dump($clase1);
+        echo "<br>";
+     
         $clase2=[
             ["Jaime"=>27],
             ["Luisa"=>21],
@@ -27,8 +30,11 @@
             ["Pedro"=>28],
             ["Juan"=>24],
         ];
-
-        var_dump($clase1[0]);
+        var_dump($clase2);
+        echo "<br>";
+       
+        $unionTablas = array_merge($clase1, $clase2);
+        var_dump($unionTablas);
            ?>
             
 </body>
