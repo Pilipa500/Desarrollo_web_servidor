@@ -5,6 +5,7 @@ class Cubo {
     private $color;
     private $litros;
     private $tieneAsa;
+  
 
     // Constructor
     public function __construct($color, $litros, $tieneAsa) {
@@ -53,6 +54,10 @@ class Cubo {
             return false; // El cubo se desbordaría, no se puede agregar la cantidad especificada
         }
     }
+    //añadir una interface que sea volumen y con un metodo calcular volumen
+    //añadir una subclase cubo grande y pequeño hijas de cubo y con variables staticas y 
+    //contador en el constructor y destructor para contar los cubos
+    //meterle un metodo abstracto al cubo  
 }
 
 ?>

@@ -15,6 +15,11 @@ Establece la cantidad de litros del $cubo1 a 80.
 Agrega un asa al $cubo2.
 Muestra la información de los cubos después de la modificación utilizando los métodos GET.
 
+Añadir una interface que sea volumen y con un metodo calcular volumen.
+Añadir una subclase cubo grande y pequeño hijas de cubo y con variables staticas y
+Poner contador de cubosGrandes en el constructor y destructor para contar los cubos
+Ponerle un metodo abstracto al cubo  
+
 Realiza operaciones adicionales:
 
 Utiliza el método estaLleno para verificar si el $cubo1 está lleno y muestra el resultado.

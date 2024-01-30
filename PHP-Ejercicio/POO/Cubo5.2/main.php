@@ -1,6 +1,7 @@
 <?php
 
 require_once('Cubo.php');
+require_once('cuboGrande.php');
 
 // Crear instancias de la clase Cubo
 $cubo1 = new Cubo("Rojo", 50, true);
