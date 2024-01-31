@@ -1,0 +1,19 @@
+En este ejercicio he diseñado una gestion de vehiculos, que comprenden coches y camiones. 
+
+Como me pediste ayer, he puesto todo en uno. Un ejercicio de clases, con herencias e interface. 
+
+Tienen atributos normales y statico. Constructores y destructor. Metodos get y set y adicionales para poder tener la informacion necesaria de cada vehiculo, ya sean camión o coche.
+
+En la clase vehículo vamos a guardar la marca, modelo, año de fabricación del vehículo y un contador, que va anotando la cantidad de vehiculos que hay.
+Una vez que ya se haya anotado la informacion al final del programa se destruyen los datos.
+
+En cada vehiculo se comprobará si está el deposito lleno de combustible, si puede llegar
+a una distancia máxima de 200k.
+
+Si es un coche sabremos el combustible y comprobaremos si el depósito de combustible tiene
+suficiente en el depósito para llegar a una distancia máxima de los 200km
+
+Si es un camión guardo la carga máxima que es posible transportar. Podrá circular si su carga
+es mayor o igual a 200Tn.
+
+Para todos los vehículos podremos obtener sus datos completos, saber el números de ruedas que tienen, si están en marcha y el estado general del vehículo.
