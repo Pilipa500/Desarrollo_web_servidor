@@ -1,6 +1,8 @@
 <?php
 
     // Incluye ficheros de variables y funciones
+    require_once("../utiles/funciones.php");
+    require_once("../utiles/variables.php");
 
 ?>
 <!DOCTYPE html>
@@ -14,14 +16,24 @@
     
 </head>
 <body>
-    <h1>Listado de departamentos usando fetch (PDO::FETCH_ASSOC)</h1>
+    <h1>Listado de departamentos usando fetch (PDO::FETCH_OBJ)</h1>
     <?php
         
         // Realiza la conexion a la base de datos a través de una función 
+        $conexion = conectarPDO($host, $user, $password, $bbdd);
 
         // Realiza la consulta a ejecutar en la base de datos en una variable
+        $consulta = "SELECT e.id, e.nombre nempleado, e.apellidos, e.email, e.hijos, e.salario, 
+                            p.nacionalidad,
+                            d.nombre ndepart,
+                            s.nombre nsede
+                        FROM empleados e INNER JOIN departamento O e.departament_id = d.id 
+                                         INNER JOIN sedes s      ON s.id = d.sede_id
+                                         INNER JOIN paises p       ON p.id = e.pais_id";
+                       
         
         // Obten el resultado de ejecutar la consulta para poder recorrerlo. El 
+        $resultado = resultadoConsulta($conexion, $consulta);
 
     ?>
         
@@ -37,8 +49,22 @@
             <th>Sede</th>
         </thead>
         <tbody>
+
             
             <!-- Mostrar todos los datos de los empleados -->
+            <?php
+             while($fila = $resultado->fetch(PDO::FETCH_OBJ)):
+            ?>
+            <tr>
+            <!-- <th><?php echo $fila->nempleado;?>  -->
+            <th>Apellidos</th>
+            <th>Correo electrónico</th>
+            <th>Nº hijos</th>
+            <th>Salario</th>
+            <th>Nacionalidad</th>
+            <th>Departamento</th>
+            <th>Sede</th>
+        </tr>
             
         </tbody>
     </table>

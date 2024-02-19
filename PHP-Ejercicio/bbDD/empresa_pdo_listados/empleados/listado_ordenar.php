@@ -1,6 +1,8 @@
 <?php
 
     // Incluye ficheros de variables y funciones
+    require_once("funciones.php");
+    require_once("variables.php");
 
 ?>
 <!DOCTYPE html>

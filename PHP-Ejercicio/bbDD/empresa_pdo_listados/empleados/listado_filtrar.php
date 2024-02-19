@@ -1,6 +1,17 @@
 <?php
+//0. Inclusión de ficheros php
+//1. Conexión a bbdd
+//2. Definir consulta
+//3. Realizar/Ejecutar consulta
+//   Selección/inserción/borrado/
+//4. Extraer/interpretar la información
+    //while(que leerá todo los datos que nos vienen)
+//5. Borrar bbdd
+    //Desconectar
 
     // Incluye ficheros de variables y funciones
+    require_once("../utiles/funciones.php");
+    require_once("../utiles/variables.php");
 
 ?>
 <!DOCTYPE html>

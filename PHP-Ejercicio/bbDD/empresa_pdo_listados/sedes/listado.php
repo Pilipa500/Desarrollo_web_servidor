@@ -22,6 +22,7 @@
 
         // Realiza la consulta a ejecutar en la base de datos en una variable
         $consulta = "SELECT * FROM sedes";
+
         // Obten el resultado de ejecutar la consulta para poder recorrerlo. El resultado es de tipo PDOStatement
         $resultado = resultadoConsulta($conexion, $consulta);
     ?>
@@ -35,10 +36,10 @@
 
             <!-- Muestra los datos -->
             <?php
-            while($fila = $resultado->fetch (PDO::FETCH_BOUND)):
+            while($fila = $resultado->fetch (PDO::FETCH_ASSOC)):
             ?>
              <!-- Fila -->
-             <td>
+             <tr>
                 <!-- Columna nombre-->
                 <td>
                     <?php
@@ -47,8 +48,8 @@
                 </td>
                 <!-- Columna Dirección-->
                 <td><?php echo $fila["direccion"]; ?></td>
-             </td>
-
+             </tr>
+             
             <?php
             endwhile;
             ?>
