@@ -27,7 +27,7 @@
                             p.nacionalidad,
                             d.nombre ndepart,
                             s.nombre nsede
-                        FROM empleados e INNER JOIN departamento O e.departament_id = d.id 
+                        FROM empleados e INNER JOIN departamentos d ON e.departamento_id = d.id 
                                          INNER JOIN sedes s      ON s.id = d.sede_id
                                          INNER JOIN paises p       ON p.id = e.pais_id";
                        
@@ -56,15 +56,18 @@
              while($fila = $resultado->fetch(PDO::FETCH_OBJ)):
             ?>
             <tr>
-            <!-- <th><?php echo $fila->nempleado;?>  -->
-            <th>Apellidos</th>
-            <th>Correo electrónico</th>
-            <th>Nº hijos</th>
-            <th>Salario</th>
-            <th>Nacionalidad</th>
-            <th>Departamento</th>
-            <th>Sede</th>
+            <td><?php echo $fila->nempleado;?> </td>
+            <td><?php echo $fila->apellidos;?></td>
+            <td><?php echo $fila->email;?></td>
+            <td><?php echo $fila->hijos;?></td>
+            <td><?php echo $fila->salario;?></td>
+            <td><?php echo $fila->nacionalidad;?></td>
+            <td><?php echo $fila->ndepart;?></td>
+            <td><?php echo $fila->nsede;?></td>
         </tr>
+        <?php
+    endwhile;
+    ?>
             
         </tbody>
     </table>
@@ -77,6 +80,8 @@
     <?php
 
         // Libera el resultado y cierra la conexión
+        $resultado = null;
+        $conexion = null;
     
     ?>
 </body>

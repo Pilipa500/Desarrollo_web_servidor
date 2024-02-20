@@ -1,8 +1,8 @@
 <?php
 
 	// Definición de variables
-	$host = "mysql:host=localhost;dbname=bbdd_tarde_empresa;charset=UTF8";
+	$host = "localhost";
 	$user = "Pilar";
 	$password = "MANAGER2024";
-	$bbdd = "dwes_manana_empresa";
+	$bbdd = "bbdd_tarde_empresa";
 ?>

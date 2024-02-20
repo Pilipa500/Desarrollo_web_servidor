@@ -30,7 +30,7 @@ function obtenerValorCampo(string $campo): string
 /**
  * FUNCIONES TRABAJAR CON BBDD
  */
-function conectarPDO(string $host, string $user, string $password, string $bbdd)
+function conectarPDO(string $host, string $user, string $password, string $bbdd) : PDO
 {
 
   try {
@@ -38,19 +38,14 @@ function conectarPDO(string $host, string $user, string $password, string $bbdd)
     $mysqul = "mysql:host=$host;dbname=$bbdd;charset=UTF8";
     //creación de la conexión (instancia de PDO)
     $conexion = new PDO ($mysqul, $user, $password);
-    //$usuario = "Pilar";CON LO ANTERIOR NO ES NECESARIO DETALLAR ESTO
-    //$password = "MANAGER2024";
+    
     //configuración del modo error
-    $opciones = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-
-    //$conexion = new PDO($mysqul, $usuario, $password, $opciones);
-    echo "Base de datos conectada.</p>";
-
-    $version = $conexion->getAttribute(PDO::ATTR_SERVER_VERSION);
-    echo "<p>Version: $version </p>";
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      
   } catch (PDOException $e) {
-    //muestra error
-    $e->getMessage();
+    //mensaje de error de la excepción
+    exit($e->getMessage());
+    
   }
   return $conexion;
 }
@@ -70,10 +65,7 @@ function resultadoConsulta(PDO $conex, String $consulta)
     $resultado = null;
   }
 }
-
-
-
-
 /**
  * FIN FUNCIONES TRABAJAR CON BBDD
  */
+?>

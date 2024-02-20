@@ -1,8 +1,8 @@
 <?php
 
     // Incluye ficheros de variables y funciones
-    require_once("funciones.php");
-    require_once("variables.php");
+    require_once("../utiles/funciones.php");
+    require_once("../utiles/variables.php");
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
     <h1>Listado de departamentos usando fetch (PDO::FETCH_OBJ)</h1>
     <?php
         // Campos que permiten ordenación
-        $camposOrdenacion = ["nombre", "apellidos", "email", "hijos", "salario", "nacionalidad", "departamento", "sede"];
+        $camposOrdenacion = ["nempleado", "apellidos", "email", "hijos", "salario", "nacionalidad", "departamento", "sede"];
 
         // Obtener campo de la ordenación
         if (isset($_GET["orden"])) 
@@ -56,14 +56,21 @@
         }
         
         // Realiza la conexion a la base de datos a través de una función 
-        
+        $conexion = conectarPDO($host, $user, $password, $bbdd);
 
         // Realiza la consulta a ejecutar en la base de datos en una variable utiliza las variables $campoOrdenar y $sentidoOrdenar
-       
+        $consulta = "SELECT e.id, e.nombre nempleado, e.apellidos, e.email, e.hijos, e.salario, 
+                            p.nacionalidad,
+                            d.nombre ndepart,
+                            s.nombre nsede
+                     FROM empleados e INNER JOIN departamentos ON e.departamento_id = d.id 
+                                      INNER JOIN sedes s      ON s.id = d.sede_id
+                                      INNER JOIN paises p       ON p.id = e.pais_id
+                    ORDER BY $campoOrdenar $sentidoOrdenar";
 
         // Obten el resultado de ejecutar la consulta para poder recorrerlo. El resultado es de tipo PDOStatement
+        $resultado = resultadoConsulta($conexion, $consulta);
         
- 
     ?>
 
         <table border="1" cellpadding="10">
@@ -81,6 +88,20 @@
 
                 <!-- Muestra los datos -->
 
+                <?php
+             while($fila = $resultado->fetch(PDO::FETCH_OBJ)):
+            ?>
+        <tr>
+            <td><?php echo $fila->nempleado;?> </td>
+            <td><?php echo $fila->apellidos;?></td>
+            <td><?php echo $fila->email;?></td>
+            <td><?php echo $fila->hijos;?></td>
+            <td><?php echo $fila->salario;?></td>
+            <td><?php echo $fila->nacionalidad;?></td>
+            <td><?php echo $fila->ndepart;?></td>
+            <td><?php echo $fila->nsede;?></td>
+        </tr>
+
             </tbody>
         </table>
         <div class="contenedor">
@@ -91,9 +112,18 @@
 
     
     <?php
+    endwhile;
+    ?>
+
+       
+        <?php
 
         // Libera el resultado y cierra la conexión
+        $resultado = null;
+        $conexion = null;
     
     ?>
+    
+   
 </body>
 </html>

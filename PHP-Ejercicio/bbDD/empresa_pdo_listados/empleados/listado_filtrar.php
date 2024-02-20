@@ -52,18 +52,67 @@
       <?php
         
         // Realiza la conexion a la base de datos a través de una función 
-        
+        $conexion = conectarPDO($host, $user, $password, $bbdd);
 
         // Obtenemos los valores del formulario de filtrado
+        $texto = obtenerValorCampo('texto');
+        $salarioMinimo = obtenerValorCampo('salarioMinimo');
+        $salarioMaximo = obtenerValorCampo('salarioMaximo');
+        $hijos = obtenerValorCampo('hijos');
         
         // Crea las condiciones de filtrado
+        $condicionesWhere = "";
+        $condiciones=[];
+        
+        //condición del texto
+        if ($texto!="")
+        {
+          $condiciones[]= "e.nempleado like '% $texto %' OR e.apellidos like '%$texto%' OR e.email like '%$texto%'";//filtro para buscar en texto
+        }
+        //condiciones del salario REVISAR ESTAS CONDICIONES
+        elseif ($salarioMaximo!="" && $salarioMinimo!="")
+        {
+          $condiciones[] = "salario <= $salarioMaximo";
+        }
+        elseif ($salarioMinimo!="")
+        {
+          $condiciones[] = "salario <= $salarioMinimo";
+        }
 
-        
+        //condiciones hijos
+        if($hijos!="")
+        {
+          $condiciones[] = "hijos = $hijos";
+        }
+       //Generar el string de condiciones WHERE
+       //si el numero de condiciones es mayor que 0
+        if(count($condiciones) >0){
+          //inicio del where
+          $condicionesWhere = "WHERE";
+
+          //recorremos condiciones añadiendolas una a una
+          foreach($condiciones as $contador => $valorCondicion){
+            //Concateno la condicion de cada posición del array
+            $condicionesWhere .= $valorCondicion;
+            if($contador < count($condiciones)-1)
+            {
+              $condicionesWhere.= " AND ";
+            }
+          }
+        }
+
         // Realiza la consulta a ejecutar en la base de datos en una variable
-        
+        $consulta = "SELECT e.id, e.nombre nempleado, e.apellidos, e.email, e.hijos, e.salario, 
+                            p.nacionalidad,
+                            d.nombre ndepart,
+                            s.nombre nsede
+                        FROM empleados e INNER JOIN departamentos d ON e.departamento_id = d.id 
+                                         INNER JOIN sedes s      ON s.id = d.sede_id
+                                         INNER JOIN paises p       ON p.id = e.pais_id
+                        $condicionesWhere";
 
         // Obten el resultado de ejecutar la consulta para poder recorrerlo. El resultado es de tipo PDOStatement
-        
+        $resultado = resultadoConsulta($conexion, $consulta);
  
         // Muestra los criterios de búsqueda
         
@@ -82,8 +131,24 @@
               <th>Sede</th>
           </thead>
           <tbody>
+          <?php
+             while($fila = $resultado->fetch(PDO::FETCH_OBJ)):
+            ?>
+            <tr>
+            <td><?php echo $fila->nempleado;?> </td>
+            <td><?php echo $fila->apellidos;?></td>
+            <td><?php echo $fila->email;?></td>
+            <td><?php echo $fila->hijos;?></td>
+            <td><?php echo $fila->salario;?></td>
+            <td><?php echo $fila->nacionalidad;?></td>
+            <td><?php echo $fila->ndepart;?></td>
+            <td><?php echo $fila->nsede;?></td>
+        </tr>
+        <?php
+    endwhile;
+    ?>
 
-              <!-- Muestra los datos -->
+            
               
           </tbody>
         </table>
@@ -97,6 +162,8 @@
     <?php
 
         // Libera el resultado y cierra la conexión
+        $resultado = null;
+        $conexion = null;
     
     ?>
 </body>
