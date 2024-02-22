@@ -21,6 +21,17 @@ function obtenerValorCampo(string $campo): string
   return $valor;
 }
 
+//Evaluar longitud cadena
+function validarLongitudCadena(string $texto, int $minimo, int $maximo): bool
+{
+  $validacion =false;
+
+  if(strlen($texto)   >=$minimo && strlen($texto) >=$maximo)
+  {
+    $validacion =true;
+  }
+  return $validacion;
+}
 
 /**
  * FIN FUNCIONES DE VALIDACIÓN

@@ -67,17 +67,23 @@
         //condición del texto
         if ($texto!="")
         {
-          $condiciones[]= "e.nempleado like '% $texto %' OR e.apellidos like '%$texto%' OR e.email like '%$texto%'";//filtro para buscar en texto
+          $condiciones[]= "e.nombre like '%$texto%' OR e.apellidos like '%$texto%' OR e.email like '%$texto%'";//filtro para buscar en texto
         }
+
         //condiciones del salario REVISAR ESTAS CONDICIONES
-        elseif ($salarioMaximo!="" && $salarioMinimo!="")
+        if ($salarioMaximo!="" && $salarioMinimo!="")
         {
-          $condiciones[] = "salario <= $salarioMaximo";
+          $condiciones[] = "salario BETWEEN $salarioMinimo AND $salarioMaximo";
         }
         elseif ($salarioMinimo!="")
         {
-          $condiciones[] = "salario <= $salarioMinimo";
+          $condiciones[] = "salario >= $salarioMinimo";
         }
+        elseIF ($salarioMaximo!="")
+        {
+          $condiciones[] = "salario <= $salarioMaximo";
+        }
+        
 
         //condiciones hijos
         if($hijos!="")
@@ -88,7 +94,7 @@
        //si el numero de condiciones es mayor que 0
         if(count($condiciones) >0){
           //inicio del where
-          $condicionesWhere = "WHERE";
+          $condicionesWhere = " WHERE ";
 
           //recorremos condiciones añadiendolas una a una
           foreach($condiciones as $contador => $valorCondicion){
@@ -132,7 +138,7 @@
           </thead>
           <tbody>
           <?php
-             while($fila = $resultado->fetch(PDO::FETCH_OBJ)):
+             while($fila = $resultado->fetch(PDO::FETCH_OBJ)) :
             ?>
             <tr>
             <td><?php echo $fila->nempleado;?> </td>

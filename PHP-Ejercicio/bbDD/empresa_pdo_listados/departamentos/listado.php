@@ -77,6 +77,9 @@ require_once("../utiles/variables.php");
         <div class="enlaces">
             <a href="../index.html">Volver a página de listados</a>
         </div>
+        <div class="enlaces">
+            <a href="../nuevo.php">Crear nueva sede</a>
+        </div>
     </div>
 
 
