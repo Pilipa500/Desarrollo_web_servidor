@@ -1,0 +1,29 @@
+
+Enunciado para hacer ejercicio de la clase Cubo:
+
+Crea dos instancias de la clase Cubo, llamadas $cubo1 y $cubo2, con los siguientes atributos iniciales:
+
+$cubo1: Color rojo, 50 litros, con asa.
+$cubo2: Color azul, 20 litros, sin asa.
+Muestra la información inicial de ambos cubos utilizando los métodos GET:
+
+Imprime el color, la cantidad de litros y si cada cubo tiene o no asa.
+Modifica algunos atributos de los cubos utilizando los métodos SET:
+
+Cambia el color del $cubo1 a verde.
+Establece la cantidad de litros del $cubo1 a 80.
+Agrega un asa al $cubo2.
+Muestra la información de los cubos después de la modificación utilizando los métodos GET.
+
+Añadir una interface que sea volumen y con un metodo calcular volumen.
+Añadir una subclase cubo grande y pequeño hijas de cubo y con variables staticas y
+Poner contador de cubosGrandes en el constructor y destructor para contar los cubos
+Ponerle un metodo abstracto al cubo  
+
+Realiza operaciones adicionales:
+
+Utiliza el método estaLleno para verificar si el $cubo1 está lleno y muestra el resultado.
+Intenta agregar 30 litros al $cubo1 utilizando el método agregarLitros.
+Si es posible agregar la cantidad, muestra un mensaje de éxito y el nuevo volumen del cubo.
+Si no es posible agregar la cantidad (debido a desbordamiento), muestra un mensaje indicando que no se puede.
+Ejecuta el programa principal y verifica que las operaciones se realicen correctamente.
