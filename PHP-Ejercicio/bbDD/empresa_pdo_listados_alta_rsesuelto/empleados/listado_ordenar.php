@@ -1,9 +1,6 @@
 <?php
-
-    // Incluye ficheros de variables y funciones
-    require_once("../utiles/funciones.php");
     require_once("../utiles/variables.php");
-
+    require_once("../utiles/funciones.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +21,7 @@
     <h1>Listado de departamentos usando fetch (PDO::FETCH_OBJ)</h1>
     <?php
         // Campos que permiten ordenación
-        $camposOrdenacion = ["nempleado", "apellidos", "email", "hijos", "salario", "nacionalidad", "departamento", "sede"];
+        $camposOrdenacion = ["nombre", "apellidos", "email", "hijos", "salario", "nacionalidad", "departamento", "sede"];
 
         // Obtener campo de la ordenación
         if (isset($_GET["orden"])) 
@@ -40,7 +37,6 @@
             $campoOrdenar = $camposOrdenacion[0];
         }
 
-        // Obtener sentido de la ordenación
         $sentidosOrdenacion = ["ASC", "DESC"];
         if (isset($_GET["sentido"])) 
         {
@@ -58,19 +54,20 @@
         // Realiza la conexion a la base de datos a través de una función 
         $conexion = conectarPDO($host, $user, $password, $bbdd);
 
-        // Realiza la consulta a ejecutar en la base de datos en una variable utiliza las variables $campoOrdenar y $sentidoOrdenar
-        $consulta = "SELECT e.id, e.nombre nempleado, e.apellidos, e.email, e.hijos, e.salario, 
-                            p.nacionalidad,
-                            d.nombre ndepart,
-                            s.nombre nsede
-                     FROM empleados e INNER JOIN departamentos d ON e.departamento_id = d.id 
-                                      INNER JOIN sedes s      ON s.id = d.sede_id
-                                      INNER JOIN paises p       ON p.id = e.pais_id
-                    ORDER BY $campoOrdenar $sentidoOrdenar";
+        // Realiza la consulta a ejecutar en la base de datos en una variable
+        $consulta = "SELECT e.id, e.nombre nombre, apellidos, email, hijos, salario, nacionalidad, d.nombre departamento, s.nombre sede
+        FROM empleados e 
+        INNER JOIN departamentos d ON 
+        d.id = e.departamento_id
+        INNER JOIN sedes s ON 
+        s.id = d.sede_id
+        INNER JOIN paises p ON
+        p.id = e.pais_id
+        ORDER BY $campoOrdenar $sentidoOrdenar"; 
 
         // Obten el resultado de ejecutar la consulta para poder recorrerlo. El resultado es de tipo PDOStatement
         $resultado = resultadoConsulta($conexion, $consulta);
-        
+ 
     ?>
 
         <table border="1" cellpadding="10">
@@ -85,42 +82,41 @@
                 <th>Sede <a href="javascript: void(0);" onclick="ordenarListado('sede', 'ASC')">&#8593</a> <a href="javascript: void(0);" onclick="ordenarListado('sede', 'DESC')">&#8595</a></th>
             </thead>
             <tbody>
-
-                <!-- Muestra los datos -->
-
                 <?php
-             while($fila = $resultado->fetch(PDO::FETCH_OBJ)):
-            ?>
-        <tr>
-            <td><?php echo $fila->nempleado;?> </td>
-            <td><?php echo $fila->apellidos;?></td>
-            <td><?php echo $fila->email;?></td>
-            <td><?php echo $fila->hijos;?></td>
-            <td><?php echo $fila->salario;?></td>
-            <td><?php echo $fila->nacionalidad;?></td>
-            <td><?php echo $fila->ndepart;?></td>
-            <td><?php echo $fila->nsede;?></td>
-        </tr>
-        <?php
-    endwhile;
-    ?>
+                   
+                    // para mostrar todos los datos
+                    while ($registro = $resultado->fetch(PDO::FETCH_OBJ)):
+                ?>
+                    <tr>
+                        <td><?php echo $registro->nombre; ?></td>
+                        <td><?php echo $registro->apellidos; ?></td>
+                        <td><?php echo $registro->email; ?></td>
+                        <td><?php echo $registro->hijos; ?></td>
+                        <td><?php echo $registro->salario; ?> €</td>
+                        <td><?php echo $registro->nacionalidad; ?></td>
+                        <td><?php echo $registro->departamento; ?></td>
+                        <td><?php echo $registro->sede; ?></td>
+                    </tr>
+                    </tr>
+                <?php
+                    endwhile;
+                ?>
             </tbody>
         </table>
         <div class="contenedor">
             <div class="enlaces">
                 <a href="../index.html">Volver a página de listados</a>
             </div>
+            <div class="enlaces">
+                <a href="nuevo.php">Nueva Empleado</a>
+            </div>
         </div>
 
-       
-        <?php
+    
+    <?php
+        $consulta = null;
 
-        // Libera el resultado y cierra la conexión
-        $resultado = null;
         $conexion = null;
-    
     ?>
-    
-   
 </body>
 </html>
