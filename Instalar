@@ -1,0 +1,7 @@
+Abrir el powerschell y escribir cd herd darle intro
+laravel new proyectoPilar darle a intro
+seleccionar breeze ....escribirlo y darle a intro
+>blade
+>yes
+>0
+cuando me pregunte Which database will your application use? darle >sqlite
